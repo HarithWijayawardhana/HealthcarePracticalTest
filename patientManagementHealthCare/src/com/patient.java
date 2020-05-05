@@ -45,8 +45,8 @@ public class patient {
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			output = "Inserted successfully";
-			System.out.println("awa");
+			String newItems = readPatient();
+			output = "{\"status\":\"success\", \"data\": \"" + newItems + "\"}";
 		} catch (Exception e) {
 			output = "Error while inserting";
 			System.err.println(e.getMessage());
@@ -62,8 +62,7 @@ public class patient {
 				return "Error while connecting to the database for reading.";
 			}
 			// Prepare the html table to be displayed
-			output = "<table border=\"1\"><tr><th>Username</th>" + "<th>password</th><th>mobile</th>" + "<th>email</th>"
-					+ "<th>address</th>" + "<th>Update</th><th>Remove</th></tr>";
+			output = "<table border='1'><tr><th>userName</th><th>password</th><th>mobile</th><th>email</th>" + "<th>Address</th> <th>Update</th><th>Remove</th></tr>";
 			String query = "select * from user";
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
@@ -76,16 +75,15 @@ public class patient {
 				String email = rs.getString("email");
 				String address = rs.getString("address");
 				// Add into the html table
-				output += "<tr><td><input id=\"hidItemIDUpdate\" name=\"hidItemIDUpdate\" type=\"hidden\" value=\""
-						+ patientId + "\">" + username + "</td>";
+				output += "<tr><td><input id= 'hidItemIDUpdate' name= 'hidItemIDUpdate' type='hidden' value='"
+						+ patientId + "'>" + username + "</td>";
 				output += "<td>" + password + "</td>";
 
 				output += "<td>" + mobile + "</td>";
 				output += "<td>" + email + "</td>";
 				output += "<td>" + address + "</td>";
 				// buttons
-				output += "<td><input name=\"btnUpdate\" type=\"button\" value=\"Update\" class=\" btnUpdate btn btn-secondary\"></td> <td><form method=\"post\" action=\"register.jsp\"> <input name=\"btnRemove\" type=\"submit\" value=\"Remove\" class=\"btn btn-danger\"> <input name=\"hidItemIDDelete\" type=\"hidden\"value=\""
-						+ patientId + "\">" + "</form></td></tr>";
+				output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'></td> " + " <td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-itemid='" + patientId + "'>" + "</td></tr>";
 			}
 			con.close();
 			// Complete the html table
@@ -118,9 +116,11 @@ public class patient {
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			output = "Updated successfully";
+			 String newItems = readPatient();
+			 output = "{\"status\":\"success\", \"data\": \"" +
+			 newItems + "\"}"; 
 		} catch (Exception e) {
-			output = "Error while updating the item.";
+			output = "{\"status\":\"error\", \"data\": \"Error while updating the user.\"}"; 
 			System.err.println(e.getMessage());
 		}
 		return output;
@@ -141,9 +141,13 @@ public class patient {
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			output = "Deleted successfully";
+			 String newItems = readPatient();
+			 output = "{\"status\":\"success\", \"data\": \"" +
+			 newItems + "\"}";
+			 
+			 
 		} catch (Exception e) {
-			output = "Error while deleting the item.";
+			output = "{\"status\":\"error\", \"data\": \"Error while deleting the user.\"}";
 			System.err.println(e.getMessage());
 		}
 		return output;

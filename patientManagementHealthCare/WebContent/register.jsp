@@ -3,7 +3,7 @@
 
 <%@ page import="com.patient"%>
 
-<%
+<%-- <%
 	//Intialize
 session.setAttribute("statusMsg", "");
 System.out.println("Trying to process");
@@ -35,7 +35,7 @@ itemObj.deletePatient(request.getParameter("hidItemIDDelete"));
 session.setAttribute("statusMsg", stsMsg);
 }
 
-%>
+%> --%>
 
 
 
@@ -108,8 +108,7 @@ session.setAttribute("statusMsg", stsMsg);
 
 				</form> -->
 
-				<form id="formItem" name="formItem" method="post"
-					action="register.jsp">
+				<form id="formItem" name="formItem">
 					name: <input id="userName" name="userName" type="text"
 						class="form-control form-control-sm"> password: <input
 						id="password" name="password" type="text"
@@ -119,12 +118,13 @@ session.setAttribute("statusMsg", stsMsg);
 						id="email" name="email" type="text"
 						class="form-control form-control-sm"> <br> Address: <input
 						id="address" name="address" type="text"
-						class="form-control form-control-sm"> <br> 
-						<input id="btnSave" name="btnSave" type="button" value="Save"class="btn btn-primary"> 
-						<input type="hidden" id="hidItemIDSave" name="hidItemIDSave" value="">
+						class="form-control form-control-sm"> <br> <input
+						id="btnSave" name="btnSave" type="button" value="Save"
+						class="btn btn-primary"> <input type="hidden"
+						id="hidItemIDSave" name="hidItemIDSave" value="">
 
 				</form>
-				
+
 
 				<div id="alertSuccess" class="alert alert-success">
 
@@ -132,7 +132,7 @@ session.setAttribute("statusMsg", stsMsg);
 						out.print(session.getAttribute("statusMsg"));
 					%>
 
-				</div>
+				</div> 
 				<div id="alertError" class="alert alert-danger">
 
 					<%
@@ -140,6 +140,14 @@ session.setAttribute("statusMsg", stsMsg);
 					%>
 
 				</div>
+
+				<div id="divItemsGrid">
+					<%
+						patient itemObj = new patient();
+						out.print(itemObj.readPatient());
+					%>
+				</div>
+
 
 
 			</div>
@@ -151,12 +159,7 @@ session.setAttribute("statusMsg", stsMsg);
 		</div>
 	</div>
 
-	<div class="container">
-		<%
-			patient itemObj = new patient();
-		out.print(itemObj.readPatient());
-		%>
-	</div>
+
 
 
 </body>
