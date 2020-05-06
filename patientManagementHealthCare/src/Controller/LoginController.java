@@ -41,7 +41,7 @@ public class LoginController extends HttpServlet {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				response.sendRedirect("success.jsp");
+				response.sendRedirect("register.jsp");
 
 				return;
 			}

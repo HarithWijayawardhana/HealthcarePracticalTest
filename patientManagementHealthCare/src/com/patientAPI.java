@@ -18,7 +18,7 @@ import java.util.Scanner;
 public class patientAPI extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	patient itemObj = new patient();
+	patient patientObj = new patient();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -45,10 +45,10 @@ public class patientAPI extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String output = itemObj.insertPatient(request.getParameter("userName"), request.getParameter("password"),
+		String output = patientObj.insertPatient(request.getParameter("userName"), request.getParameter("password"),
 				request.getParameter("mobile"), request.getParameter("email"), request.getParameter("address"));
 		
-		System.out.println("awilla inne");
+	
 		
 		response.getWriter().write(output);
 	}
@@ -62,7 +62,7 @@ public class patientAPI extends HttpServlet {
 
 		Map paras = getParasMap(request);
 		
-		String output = itemObj.updatePatient(paras.get("hidItemIDSave").toString(), paras.get("userName").toString(),
+		String output = patientObj.updatePatient(paras.get("hidItemIDSave").toString(), paras.get("userName").toString(),
 				paras.get("password").toString(), paras.get("mobile").toString(), paras.get("email").toString(), paras.get("address").toString());
 		response.getWriter().write(output);
 		
@@ -78,9 +78,9 @@ public class patientAPI extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		 Map paras = getParasMap(request);
-		 String output = itemObj.deletePatient(paras.get("userId").toString());
+		 String output = patientObj.deletePatient(paras.get("userId").toString());
 		 response.getWriter().write(output); 
-		 System.out.println("awilla inne servlet");
+		
 		
 	}
 	

@@ -52,7 +52,7 @@
 			class="text-center border border-light p-5" method="post">
 
 
-			<p class="h4 mb-4">Log in</p>
+			<p class="h4 mb-4">Sign in</p>
 
 
 			<input type="text" name="username" class="form-control mx-auto" placeholder="Username"

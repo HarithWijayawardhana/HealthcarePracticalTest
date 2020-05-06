@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<center><h1>Invalid username or password, Please try again with valid information</h1></center>
+<center><h2>Invalid username or password, Please try again with valid information</h2></center>
  
 </body>
 </html>
